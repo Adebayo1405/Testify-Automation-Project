@@ -65,7 +65,31 @@ import javax.swing.*;
 
     }
 
-       @Test(priority = 2)
+        @Test(priority = 2)
+        public void blankField() throws InterruptedException {
+            //5.Click on the sign-in/log in button
+            String homePage = "https://www.konga.com/";
+
+            if (driver.getCurrentUrl().equals(homePage)) {
+                //proceed to log in
+                driver.navigate().refresh();
+
+            } else {
+                driver.navigate().to(homePage);
+                Thread.sleep(5000);
+            }
+            driver.findElement(By.xpath("//*[@id=\"nav-bar-fix\"]/div[1]/div/div/div[4]/a")).click();
+            //6.Locate the email address field and Input  email address on the email address field
+            driver.findElement(By.id("username")).sendKeys("");
+            //7.Locate the password field and Input password on the password field
+            driver.findElement(By.id("password")).sendKeys("");
+            //8.Click on the Sign in/login/Continue button
+            driver.findElement(By.xpath("//*[@id=\"app-content-wrapper\"]/div[4]/section/section/aside/div[2]/div/form/div[3]/button")).click();
+
+            Thread.sleep(5000);
+        }
+
+       @Test(priority = 3)
        public void invalidEmail() throws InterruptedException {
         //5.Click on the sign-in/log in button
         String homePage = "https://www.konga.com/";
@@ -76,46 +100,24 @@ import javax.swing.*;
 
         } else {
             driver.navigate().to(homePage);
-            Thread.sleep(5000);
+
+            Thread.sleep(300);
         }
         driver.findElement(By.xpath("//*[@id=\"nav-bar-fix\"]/div[1]/div/div/div[4]/a")).click();
+           Thread.sleep(300);
         //6.Locate the email address field and Input  email address on the email address field
         driver.findElement(By.id("username")).sendKeys("Coomailinator.com");
+           Thread.sleep(300);
         //7.Locate the password field and Input password on the password field
         driver.findElement(By.id("password")).sendKeys("@Admin12345");
+           Thread.sleep(300);
         //8.Click on the Sign in/login/Continue button
         driver.findElement(By.xpath("//*[@id=\"app-content-wrapper\"]/div[4]/section/section/aside/div[2]/div/form/div[3]/button")).click();
         //9.Logout from the account
-
-        Thread.sleep(3000);
-    }
-
-
-     @Test(priority = 3)
-     public void blankField() throws InterruptedException {
-        //5.Click on the sign-in/log in button
-        String homePage = "https://www.konga.com/";
-
-        if (driver.getCurrentUrl().equals(homePage)) {
-            //proceed to log in
-            driver.navigate().refresh();
-
-        } else {
-            driver.navigate().to(homePage);
-            Thread.sleep(3000);
-        }
-        driver.findElement(By.xpath("//*[@id=\"nav-bar-fix\"]/div[1]/div/div/div[4]/a")).click();
-        //6.Locate the email address field and Input  email address on the email address field
-        driver.findElement(By.id("username")).sendKeys("");
-        //7.Locate the password field and Input password on the password field
-        driver.findElement(By.id("password")).sendKeys("");
-        //8.Click on the Sign in/login/Continue button
-        driver.findElement(By.xpath("//*[@id=\"app-content-wrapper\"]/div[4]/section/section/aside/div[2]/div/form/div[3]/button")).click();
-        //9.Logout from the account
-
 
         Thread.sleep(5000);
     }
+
 
         @Test(priority = 4)
         public void invalidPassword() throws InterruptedException {
@@ -128,7 +130,7 @@ import javax.swing.*;
 
             } else {
                 driver.navigate().to(homePage);
-                // Thread.sleep(3000);
+                Thread.sleep(5000);
             }
             driver.findElement(By.xpath("//*[@id=\"nav-bar-fix\"]/div[1]/div/div/div[4]/a")).click();
             //6.Locate the email address field and Input  email address on the email address field
@@ -141,6 +143,9 @@ import javax.swing.*;
 
             Thread.sleep(5000);
         }
+
+
+
      @AfterTest
      public void closeBrowser(){
         //10. Quit the browser
